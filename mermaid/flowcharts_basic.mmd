@@ -1,0 +1,36 @@
+graph TD
+    subgraph "Fase 1: Preparación y Verificación"
+        A([Inicio: Acceder a equipo]) --> B{¿Conozco la IP del equipo?};
+        B -- No --> C["Consultar en la base de datos de inventario"];
+        C --> D["Obtener IP"];
+        B -- Sí --> D;
+        D --> E["Hacer ping al equipo"];
+        E --> F{¿Responde al ping?};
+        F -- No --> G((Fallo: Equipo inalcanzable));
+    end
+
+    subgraph "Fase 2: Conexión y Autenticación"
+        F -- Sí --> H{¿El equipo es PE, ACCESO o CPE?};
+        H -- PE / ACCESO --> I["ssh &lt;usuario&gt;@&lt;ip_equipo&gt;"];
+        H -- CPE --> J["telnet &lt;ip_equipo&gt;"];
+        I --> K{¿Conexión SSH exitosa?};
+        J --> L{¿Conexión exitosa?};
+        K -- No --> M((Fallo: No se pudo establecer conexión));
+        L -- No --> M;
+        K -- Sí --> N["Ingresar credenciales (usuario/contraseña)"];
+        L -- Sí --> N;
+        N --> O{¿Credenciales correctas?};
+        O -- No --> P((Fallo: Acceso denegado));
+    end
+
+    subgraph "Fase 3: Acceso Exitoso"
+      O -- Sí --> Q([Acceso concedido al equipo]);
+    end
+
+    %% --- Estilos para claridad visual ---
+    classDef fallo fill:#f8d7da,stroke:#721c24,stroke-width:2px;
+    classDef exito fill:#d4edda,stroke:#155724,stroke-width:2px;
+    classDef comando fill:#333,color:#fff,stroke:#666,stroke-width:1px,font-family:monospace;
+    class G,M,P fallo;
+    class Q exito;
+    class I,J comando;
