@@ -1,4 +1,8 @@
 flowchart TD
-    A@{ img: "https://symbols.getvecta.com/stencil_240/1_10700.3c03389f5e.svg", label: "Image Label", pos: "t", w: 10, constraint: "off" } --> | XD | B@{ img: "https://symbols.getvecta.com/stencil_240/79_fileserver.c500813aaa.svg", label: "Image Label", pos: "d", constraint: "off" }
-
+    A["<img src='https://symbols.getvecta.com/stencil_240/1_10700.3c03389f5e.svg' width='30px' height='60px' /> <br> <b>Router Principal</b>"] --> |Conexión WAN| B["<img src='https://symbols.getvecta.com/stencil_240/79_fileserver.c500813aaa.svg' width='30px' height='60px' /> <br> <b>Servidor de Archivos</b>"]
+    B --> |LAN| C["<img src='https://symbols.getvecta.com/stencil_240/81_firewall.21bd3abec8.svg' width='30px' height='60px' /> <br> <b>Firewall</b>"]
+    C --> D["<img src='https://symbols.getvecta.com/stencil_240/289_workgroup-switch.a1d6ab47e3.svg' width='30px' height='60px' /> <br> <b>Switch de Red</b>"]
+    D --> E["<img src='https://symbols.getvecta.com/stencil_240/290_workstation.02954c1625.svg' width='30px' height='60px' /> <br> <b>Estación de Trabajo</b>"]
+    D --> F["<img src='https://symbols.getvecta.com/stencil_240/199_relational-database.f8d8857803.svg' width='30px' height='60px' /> <br> <b>Base de Datos</b>"]
+    A --> |VPN| G["<img src='https://symbols.getvecta.com/stencil_211/35_cloud.475be0f586.svg' width='30px' height='60px' /> <br> <b>Servicios en la Nube</b>"]
 
